@@ -52,8 +52,20 @@ class _MyFirestorePageState extends State<MyFirestorePage> {
                 // ドキュメント作成
                 await FirebaseFirestore.instance
                     .collection('users') // コレクションID
-                    .doc('id_abc') // ドキュメントID
-                    .set({'name': '鈴木', 'age': 40}); // データ
+                    .doc('id_ghi') // ドキュメントID
+                    .set({'name': '田中', 'age': 20}); // データ
+              },
+            ),
+            ElevatedButton(
+              child: Text('サブコレクション＋ドキュメント作成'),
+              onPressed: () async {
+                // サブコレクション内にドキュメント作成
+                await FirebaseFirestore.instance
+                    .collection('users') // コレクションID
+                    .doc('id_abc') // ドキュメントID << usersコレクション内のドキュメント
+                    .collection('orders') // サブコレクションID
+                    .doc('id_123') // ドキュメントID << サブコレクション内のドキュメント
+                    .set({'price': 600, 'date': '9/13'}); // データ
               },
             ),
           ],
